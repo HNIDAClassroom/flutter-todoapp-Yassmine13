@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'auth_verify.dart';
 
 class MyApp extends StatelessWidget {

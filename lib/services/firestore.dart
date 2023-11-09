@@ -1,17 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/task.dart';
+import 'package:intl/intl.dart';
 
 class FirestoreService {
   final CollectionReference tasks =
       FirebaseFirestore.instance.collection('tasks');
 
   Future<void> addTask(Task task) {
+    final DateFormat formatter = DateFormat('yyyy-MM-dd HH:mm');
+
+    String formattedDate = formatter.format(task.date);
     return tasks.add({
       'taskTitle': task.title.toString(),
       'taskDesc': task.description.toString(),
       'taskCategory': task.category.toString(),
       'id': task.id.toString(),
       'completed': task.completed,
+      'taskDate': formattedDate,
     });
   }
 
