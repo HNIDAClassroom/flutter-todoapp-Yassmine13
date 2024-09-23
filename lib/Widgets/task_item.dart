@@ -67,7 +67,30 @@ class TaskItem extends StatelessWidget {
                 IconButton(
                   icon: Icon(Icons.delete),
                   onPressed: () {
-                    firestoreService.deleteTask(task);
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text("Confirmation"),
+                          content: Text("Voulez-vous supprimer cette tâche ?"),
+                          actions: <Widget>[
+                            TextButton(
+                              child: Text("Annuler"),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                            TextButton(
+                              child: Text("Supprimer"),
+                              onPressed: () {
+                                firestoreService.deleteTask(task);
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
+                        );
+                  }
+                  );
                   },
                 ),
               ],

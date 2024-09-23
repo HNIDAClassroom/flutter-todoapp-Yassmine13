@@ -23,8 +23,6 @@ class Task {
 void setId(String newId) {
    id = newId;
 }
-
-  
 }
 
 

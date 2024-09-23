@@ -8,7 +8,6 @@ class FirestoreService {
 
   Future<void> addTask(Task task) {
     final DateFormat formatter = DateFormat('yyyy-MM-dd HH:mm');
-
     String formattedDate = formatter.format(task.date);
     return tasks.add({
       'taskTitle': task.title.toString(),
@@ -29,7 +28,6 @@ class FirestoreService {
     final String taskId = task.id;
     final QuerySnapshot idQuery =
         await tasks.where('id', isEqualTo: taskId).get();
-
     if (idQuery.docs.isNotEmpty) {
       final taskDoc = idQuery.docs.first;
       await taskDoc.reference.delete();
